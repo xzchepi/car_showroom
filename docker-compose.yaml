@@ -1,12 +1,26 @@
 version: '3.8'
 services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db_auth
+    volumes:
+      - ./:/app
   db_auth:
     container_name: db_auth
-    restart: always
     environment:
       POSTGRES_PASSWORD: root
       POSTGRES_USER: admin
       POSTGRES_DB: db01
     ports:
-      - "54321:5432"
+      - "5433:5432"
+    volumes:
+      - postgres:/var/lib/postgresql
     image: postgres:alpine3.19
+
+volumes:
+  postgres: { }
