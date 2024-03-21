@@ -10,6 +10,7 @@ services:
       - db_auth
     volumes:
       - ./:/app
+
   db_auth:
     container_name: db_auth
     environment:
@@ -22,5 +23,18 @@ services:
       - postgres:/var/lib/postgresql
     image: postgres:alpine3.19
 
+  pgadmin4:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: xloytc@mail.ru
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin4:/var/lib/pgadmin
+
 volumes:
   postgres: { }
+  pgadmin4: { }
