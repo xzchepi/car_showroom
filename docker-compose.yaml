@@ -28,7 +28,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: db01
     ports:
-      - "5433:5432"
+      - "5433:5434"
     volumes:
       - postgres:/var/lib/postgresql
     image: postgres:alpine3.19
